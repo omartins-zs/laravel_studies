@@ -40,3 +40,5 @@ Route::redirect('/saltar', '/index');
 Route::permanentRedirect('/saltar2', '/index');
 
 Route::view('/view', 'home');
+
+Route::view('/view2', 'home', ['myName' => 'Gabriel Martins']);
