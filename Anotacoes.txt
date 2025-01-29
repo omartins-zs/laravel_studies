@@ -1,1 +1,5 @@
 http://laravel_studies.test:81/
+
+php artisan route:list
+
+php artisan route:list -v
