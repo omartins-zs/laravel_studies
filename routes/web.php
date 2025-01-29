@@ -42,3 +42,22 @@ Route::permanentRedirect('/saltar2', '/index');
 Route::view('/view', 'home');
 
 Route::view('/view2', 'home', ['myName' => 'Gabriel Martins']);
+
+// ----------------------------------------------
+// ROUTE PARAMETROS
+// ----------------------------------------------
+
+Route::get('/valor/{value}',[MainController::class, 'mostrarValor']);
+Route::get('/valores/{value1}/{value2}',[MainController::class, 'mostrarValores']);
+Route::get('/valores2/{value1}/{value2}',[MainController::class, 'mostrarValores2']);
+
+Route::get('/opcional/{value1?}',[MainController::class, 'mostrarValorOpcional']);
+
+Route::get('/opcional2/{value1}/{value2?}',[MainController::class, 'mostrarValorOpcional2']);
+
+Route::get('/user/{user_id}/post/{post_id}',[MainController::class, 'mostrarPosts']);
+
+
+Route::get('/param2/{nome}/{idade}', function ($nome, $idade) {
+    return "<h1> Parametro: $nome - Idade: $idade </h1>";
+});
