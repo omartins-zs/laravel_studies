@@ -136,3 +136,16 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/user/edit', 'edit');
     Route::get('/user/delete', 'delete');
 });
+
+
+// ----------------------------------------------
+// ROUTE FALLBACK
+// ----------------------------------------------
+
+Route::fallback(function () {
+   echo 'PÁGINA NÃO ENCONTRADA';
+});
+// Fallback JSON
+Route::fallback(function () {
+    return response()->json(['error' => 'Página não encontrada'], 404);
+});
