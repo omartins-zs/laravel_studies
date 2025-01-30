@@ -103,3 +103,20 @@ Route::prefix('admin')->group(function () {
     Route::get('/about', [MainController::class, 'about']);
     Route::get('/management', [MainController::class, 'management']);
 });
+
+// ----------------------------------------------
+// ROUTE GROUPS / MIDDLEWARE
+// ----------------------------------------------
+
+Route::get('/admin/only', function () {
+    return "Apenas administradores!";
+})->middleware([OnlyAdmin::class]);
+
+Route::middleware([OnlyAdmin::class])->group(function () {
+    Route::get('/admin/only2', function () {
+        return "Apenas administradores 2";
+    });
+    Route::get('/admin/only3', function () {
+        return "Apenas administradores 3";
+    });
+});
