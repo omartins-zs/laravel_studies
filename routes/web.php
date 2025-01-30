@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Middleware\OnlyAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -75,3 +76,30 @@ Route::get('/exp3/{value1}/{value2}', function ($value1, $value2) {
     'value1' => '[0-9]+',   // Apenas números (um ou mais)
     'value2' => '[A-Za-z]+' // Apenas letras (maiúsculas ou minúsculas, um ou mais caracteres)
 ]);
+
+// ----------------------------------------------
+// ROUTE NAMES
+// ----------------------------------------------
+
+Route::get('/rota_abc', function () {
+    return 'Rota nomeada';
+})->name('rota_nomeada');
+
+Route::get('/rota_referenciada', function () {
+    return redirect()->route('rota_nomeada');
+});
+
+// ----------------------------------------------
+// ROUTE PREFIXES / GROUPS
+// ----------------------------------------------
+
+/*
+/admin/home
+/admin/about
+/admin/management
+*/
+Route::prefix('admin')->group(function () {
+    Route::get('/home', [MainController::class, 'index']);
+    Route::get('/about', [MainController::class, 'about']);
+    Route::get('/management', [MainController::class, 'management']);
+});
