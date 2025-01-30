@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\OnlyAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -119,4 +120,19 @@ Route::middleware([OnlyAdmin::class])->group(function () {
     Route::get('/admin/only3', function () {
         return "Apenas administradores 3";
     });
+});
+
+// ----------------------------------------------
+// ROUTE CONTROLLERS
+// ----------------------------------------------
+
+/*
+    Route::get('/user/new', [UserController::class, 'new']);
+    Route::get('/user/edit/', [UserController::class, 'edit']);
+    Route::get('/user/delete', [UserController::class, 'delete']);
+*/
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user/new', 'new');
+    Route::get('/user/edit', 'edit');
+    Route::get('/user/delete', 'delete');
 });
